@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Beer"
+            android:paddingTop="10dip"
+            android:paddingLeft="10dip"
+            android:paddingBottom="5dip"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/textViewName"
+            android:paddingRight="5dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Beer Type"
+            android:paddingLeft="10dip"
+            android:paddingBottom="5dip"
+            android:textSize="15sp"
+            android:id="@+id/textViewStatus"
+            android:paddingRight="10dip"
+            android:paddingTop="5dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:focusable="false"
+        android:text="X"
+        android:textSize="35dp" />
+
+</LinearLayout>
