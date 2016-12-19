@@ -54,7 +54,7 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     void atualizarCursor(){
-        getLoaderManager().restartLoader(BOUGHT_ID,null,this);
+        getLoaderManager().restartLoader(BOUGHT_LOADER,null,this);
     }
 
     @Override
@@ -212,7 +212,6 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
                     Toast.makeText(getActivity(),
                             "Pedido Cancelado", Toast.LENGTH_SHORT).show();
 
-                    //getActivity().onBackPressed();
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
