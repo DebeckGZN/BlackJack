@@ -53,6 +53,10 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
     public BoughtFragment() {
     }
 
+    void atualizarCursor(){
+        getLoaderManager().restartLoader(BOUGHT_ID,null,this);
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         getLoaderManager().initLoader(BOUGHT_LOADER, null, this);
@@ -68,6 +72,7 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public void onStart() {
+        atualizarCursor();
         super.onStart();
     }
 
@@ -201,7 +206,8 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    //deleteListItem(deleteId);
+                    deleteListItem(deleteId);
+
 
                     Toast.makeText(getActivity(),
                             "Pedido Cancelado", Toast.LENGTH_SHORT).show();
@@ -218,7 +224,10 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
 
             String[] mSelectionArgs = {String.valueOf(id)};
 
-            getContext().getContentResolver().delete(BlackJackBeerContract.BoughtEntry.CONTENT_URI,null,null);
+            getContext().getContentResolver().delete(
+                    BlackJackBeerContract.BoughtEntry.CONTENT_URI, BlackJackBeerContract.BoughtEntry.TABLE_NAME +
+                    "." + BlackJackBeerContract.ProductEntry._ID + " = " + String.valueOf(id),
+                    null);
         }
 
     }

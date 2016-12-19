@@ -98,9 +98,7 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
     private void updateProducts(){
         FetchData fetch = new FetchData();
         fetch.execute();
-
     }
-
 
 
     @Override
@@ -340,15 +338,8 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
             super.onPostExecute(result);
 
             if(result !=null){
-                //adapter.clear();
-                //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                //prefs.getString(R.string.)
-                //int categoria = prefs.getString(R.string.);
                 for (Produto produto :  result){
-                    // if(produto.getCategoria().equals()) {
-                    //adapter.add(produto);
                     insertProduct(produto.getNome(),produto.getPreco(),produto.getCategoria(),produto.descricao,produto.isDisponibilidade()," ");
-                    //  }
                 }
             }
         }
