@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:orientation="vertical"
@@ -39,7 +40,7 @@
         android:id="@+id/delete_button"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:focusable="false"
+        android:focusable="true"
         android:text="X"
         android:textSize="35dp" />
 

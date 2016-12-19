@@ -9,6 +9,8 @@
 
     <!-- Dialog-->
 
+    <string name="title_delete_dialog">Cancelar esta compra?</string>
+
     <string name="ok_dialog">OK</string>
     <string name="cancel_dialog">CANCELAR</string>
     <string name="title_dialog">Confirmar esta compra?</string>

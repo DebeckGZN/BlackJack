@@ -2,6 +2,7 @@ package info.androidhive.blackjackbeer.activity;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import info.androidhive.blackjackbeer.R;
  * Created by Marinete-Cedmar on 07/12/2016.
 */
 public class BoughtAdapter extends android.widget.CursorAdapter {
+    FragmentManager fragmentManager;
 
-    public BoughtAdapter(Context context, Cursor c, int flags) {
+    public BoughtAdapter(Context context, Cursor c, int flags, FragmentManager fragmentManager) {
         super(context, c, flags);
+        this.fragmentManager = fragmentManager;
     }
 
 
@@ -33,7 +36,7 @@ public class BoughtAdapter extends android.widget.CursorAdapter {
         This is where we fill-in the views with the contents of the cursor.
     */
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
         // our view is pretty simple here --- just a text view
         // we'll keep the UI functional with a simple (and slow!) binding.
 
@@ -54,6 +57,17 @@ public class BoughtAdapter extends android.widget.CursorAdapter {
             button.setClickable(false);
             button.setVisibility(view.INVISIBLE);
         }
+
+        final BoughtFragment.DeleteDialog d = new BoughtFragment.DeleteDialog();
+        d.setDialogInfo(cursor.getLong(BoughtFragment.BOUGHT_ID),cursor.getString(BoughtFragment.PRODUCT_NAME));
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                d.show(fragmentManager,"");
+            }
+        });
 
         //TextView tv = (TextView)view;
         //String title = cursor.getString((MainActivityFragment.COLUMN_NAME));
