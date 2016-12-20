@@ -1,5 +1,6 @@
 package info.androidhive.blackjackbeer.activity;
 
+import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -197,6 +198,8 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
 
     public class FetchData extends AsyncTask<Void,Void, ArrayList<Produto>> {
 
+        ProgressDialog progressDialog;
+
         private long insertProduct(String name, float price, String category, String description, boolean disponibility, String image) {
             long productId =0;
 
@@ -250,7 +253,6 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
 
             // Will contain the raw JSON response as a string.
             String forecastJsonStr = null;
-
 
 
             try {
@@ -334,12 +336,21 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(
+                    getActivity(),
+                    "Aguarde", "Carregando os produtos...");
+        }
+
+        @Override
         protected void onPostExecute(ArrayList<Produto> result) {
             super.onPostExecute(result);
 
+            progressDialog.dismiss();
             if(result !=null){
                 for (Produto produto :  result){
-                    insertProduct(produto.getNome(),produto.getPreco(),produto.getCategoria(),produto.descricao,produto.isDisponibilidade()," ");
+                    insertProduct(produto.getNome(),produto.getPreco(),produto.getCategoria(),produto.descricao,produto.isDisponibilidade(),"1");
                 }
             }
         }

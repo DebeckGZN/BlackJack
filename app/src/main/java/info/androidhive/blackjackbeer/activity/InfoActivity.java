@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.content.*;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -148,6 +149,7 @@ public class InfoActivity extends AppCompatActivity {
             TextView textViewDetail = (TextView) getView().findViewById(R.id.textViewDetailName);
             TextView textViewDescription = (TextView) getView().findViewById(R.id.textViewDescription);
             TextView textViewPreco = (TextView) getView().findViewById(R.id.textViewDetailPrice);
+            ImageView imageView = (ImageView) getView().findViewById(R.id.imageViewProduct);
 
             id=Long.parseLong(data.getString(COL_PRODUCT_ID));
 
@@ -159,6 +161,8 @@ public class InfoActivity extends AppCompatActivity {
             title = "R$ " + data.getString(COLUMN_PRICE) + ",00";
             dialogPrice = title;
             textViewPreco.setText(title);
+
+            ImageContract.setImage(imageView,Integer.valueOf(data.getString(COLUMN_IMAGE)));
 
         }
 

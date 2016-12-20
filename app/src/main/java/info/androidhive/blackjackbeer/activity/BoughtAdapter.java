@@ -26,7 +26,7 @@ public class BoughtAdapter extends android.widget.CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        //TODO: ver como fica a amarracao o itemXML a listView  e Cursor. Explicar em aula.
+
         View view = LayoutInflater.from(context).inflate(R.layout.fragment_bought_item, parent, false);
 
         return view;
@@ -50,7 +50,7 @@ public class BoughtAdapter extends android.widget.CursorAdapter {
         }else{
             title = "Retirado";
         }
-            textViewCategory.setText(title);
+        textViewCategory.setText(title);
 
         Button button = (Button) view.findViewById(R.id.delete_button);
         if(Long.parseLong(cursor.getString(BoughtFragment.BOUGHT_STATUS)) == 1) {
