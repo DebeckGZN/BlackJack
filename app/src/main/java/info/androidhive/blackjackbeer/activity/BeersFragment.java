@@ -350,7 +350,7 @@ public class BeersFragment extends Fragment implements LoaderManager.LoaderCallb
             progressDialog.dismiss();
             if(result !=null){
                 for (Produto produto :  result){
-                    insertProduct(produto.getNome(),produto.getPreco(),produto.getCategoria(),produto.descricao,produto.isDisponibilidade(),"1");
+                    insertProduct(produto.getNome(),produto.getPreco(),produto.getCategoria(),produto.descricao,produto.isDisponibilidade(),produto.getImage());
                 }
             }
         }

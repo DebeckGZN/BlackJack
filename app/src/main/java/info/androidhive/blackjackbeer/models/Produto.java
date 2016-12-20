@@ -11,6 +11,7 @@ public class Produto {
     public String descricao;
     private boolean situacao; //pendente ou retirado;
     private boolean disponibilidade;
+    private String image;
     private String codigo;
 
     public Produto(String nome, float preco, String categoria, boolean disponibilidade){
@@ -114,6 +115,12 @@ public class Produto {
         this.codigo = codigo;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
+    public String getImage() {
+        return this.image;
+    }
 
 }

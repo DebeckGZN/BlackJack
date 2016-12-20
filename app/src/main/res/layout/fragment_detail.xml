@@ -16,21 +16,22 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewDetailName"
-        android:text="Beer Name"
+        android:text="@string/beer_name"
         android:gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textSize="50dp" />
+        android:textSize="50dp"
+        tools:ignore="SpUsage" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/imageViewProduct"
-        android:src="@drawable/beer_icon"
-        android:layout_below="@+id/textViewDetailName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_above="@+id/textViewDescription"
+        android:layout_below="@+id/textViewDetailName"
+        android:src="@drawable/interrogacao_image" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
         android:layout_alignTop="@+id/textViewDescription"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:layout_marginBottom="5dp" />
 
     <Button
@@ -61,6 +62,7 @@
         android:id="@+id/buttonComprar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

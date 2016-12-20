@@ -40,9 +40,12 @@ public class ProductDataParser {
 
                 String descricao = (String)productObject.get("descricao");
 
+                String image = (String)productObject.get("image");
+
                 Produto insere = new Produto(nome,(float)preco,categoria,disponibilidade);
                 if (descricao != null)
                     insere.descricao = descricao;
+                insere.setImage(image);
 
                 products.add(insere);
 
