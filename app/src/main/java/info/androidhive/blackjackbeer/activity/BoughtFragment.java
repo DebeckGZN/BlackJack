@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -83,7 +84,7 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
 
         View rootView = inflater.inflate(R.layout.fragment_bought,container,false);
 
-        mBoughtAdapter = new BoughtAdapter(getActivity(),null,0);
+        mBoughtAdapter = new BoughtAdapter(getActivity(),null,0,getFragmentManager());
 
         ListView listaDeViews = (ListView) rootView.findViewById(R.id.listview_bought);
 
@@ -101,6 +102,7 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
                 deleteId = cursor.getLong(BOUGHT_ID);
                 deleteName = cursor.getString(PRODUCT_NAME);
 
+                /*
                 Button cancelar = (Button) view.findViewById(R.id.delete_button);
 
                 cancelar.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +118,7 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
                     }
 
                 });
+                */
 
                 /*if (cursor != null) {
                     Intent chamarDetalhe = new Intent(getActivity(), InfoActivity.class)
@@ -184,18 +187,21 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
     public static class DeleteDialog extends DialogFragment
             implements DialogInterface.OnClickListener {
 
-
+        long id = 0;
+        String name;
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             View view = getActivity().getLayoutInflater()
                     .inflate(R.layout.delete_dialog_activity, null);
 
-            TextView name = (TextView) view.findViewById(R.id.dialog_name);
-            name.setText(deleteName);
+            TextView nameView = (TextView) view.findViewById(R.id.dialog_name);
+            //name.setText(deleteName);
+            if (name != null)
+                nameView.setText(name);
 
             return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.title_dialog)
+                    .setTitle(R.string.title_delete_dialog)
                     .setView(view)
                     .setPositiveButton(R.string.ok_dialog, this)
                     .setNegativeButton(R.string.cancel_dialog, null)
@@ -206,7 +212,9 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    deleteListItem(deleteId);
+                    //deleteListItem(deleteId);
+                    if (id != 0)
+                        deleteListItem(id);
 
 
                     Toast.makeText(getActivity(),
@@ -221,12 +229,15 @@ public class BoughtFragment extends Fragment implements LoaderManager.LoaderCall
 
         public void deleteListItem(long id){
 
-            String[] mSelectionArgs = {String.valueOf(id)};
-
             getContext().getContentResolver().delete(
                     BlackJackBeerContract.BoughtEntry.CONTENT_URI, BlackJackBeerContract.BoughtEntry.TABLE_NAME +
                     "." + BlackJackBeerContract.ProductEntry._ID + " = " + String.valueOf(id),
                     null);
+        }
+
+        public void setDialogInfo(long id, String name){
+            this.id = id;
+            this.name = name;
         }
 
     }
